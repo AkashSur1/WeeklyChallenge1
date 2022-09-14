@@ -452,4 +452,6 @@ year_id qtr_id  quarterly_sales city
 
 h. Find a month for each year in which maximum number of quantities were sold
 
+
+
 -> Ran the below query in Hive:
