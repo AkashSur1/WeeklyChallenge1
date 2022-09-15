@@ -452,6 +452,23 @@ year_id qtr_id  quarterly_sales city
 
 h. Find a month for each year in which maximum number of quantities were sold
 
-
-
 -> Ran the below query in Hive:
+
+select * from
+    > (
+    > select *, rank() over (partition by sub2.year_id order by sub2.sum1 desc) as rank
+    > from
+    > (
+    > select year_id, month_id, round(sum(sales),2) as sum1 from sales_order_orc
+    > group by year_id, month_id
+    > order by sum1
+    > ) sub2
+    > ) sub1
+    > where sub1.rank = 1;
+
+Result:
+sub1.year_id    sub1.month_id   sub1.sum1       sub1.rank
+2003                    11      1029837.66      1
+2004                    11      1089048.01      1
+2005                    5       457861.06       1
+
