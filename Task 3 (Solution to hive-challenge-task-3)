@@ -152,10 +152,35 @@ b. create table order
     > row format delimited
     > fields terminated by ',' ;
 
+c. INNER JOIN:
+   select order.oid,order.date, customers.id, customers.name, customers.address
+    > from customers
+    > inner join order
+    > on customers.id = order.customer_id;
+    
+   LEFT OUTER JOIN:
+   select customers.name, order.oid
+    > from customers
+    > left outer join order
+    > on customers.id = order.customer_id
+    > order by customers.name;
+   
+   RIGHT OUTER JOIN:
+   select order.oid, customers.name, customers.age 
+    > from orders
+    > right outer join customers
+    > on order.oid = customers.id
+    > order by order.oid;
+    
+   FULL OUTER JOIN:
+   select customers.name, order.oid
+    > from customers
+    > full outer join order
+    > on customers.id = order.customer_id
+    > order by customers.name;
 
 
-
-BUILD A DATA PIPELINE WITH HIVE
+*BUILD A DATA PIPELINE WITH HIVE
 
 Download a data from the given location - 
 https://archive.ics.uci.edu/ml/machine-learning-databases/00360/
